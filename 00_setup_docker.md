@@ -32,3 +32,46 @@ set -o vi;
 sudo apt update -y;
 sudo apt install -y git neovim;
 ```
+
+## Setting up a bin directory for aliases
+
+```sh
+mkdir bin
+export PATH="$PATH:$HOME/bin"
+```
+
+### v == vim
+
+In `"$HOME/bin/v"`:
+
+```sh
+#!/bin/sh
+
+nvim "$@"
+```
+
+### g == git
+
+In `"$HOME/bin/g"`
+
+```sh
+#!/bin/sh
+
+if test -n "$@" ; then
+    git "$@"
+else
+    git status
+fi
+```
+
+```sh
+chmod +x bin/*
+```
+
+### c == clear
+
+```sh
+#!/bin/sh
+
+clear
+```
