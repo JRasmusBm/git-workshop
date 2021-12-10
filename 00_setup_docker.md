@@ -4,7 +4,7 @@
 
 ```sh
 docker run --name=git-workshop -it ubuntu /bin/bash;
-docker rm git-workshop;
+# docker rm git-workshop;
 set -o vi;
 ```
 
@@ -57,21 +57,27 @@ In `"$HOME/bin/g"`
 ```sh
 #!/bin/sh
 
-if test -n "$@" ; then
+if test -n "$1" ; then
     git "$@"
 else
     git status
 fi
 ```
 
-```sh
-chmod +x bin/*
-```
-
 ### c == clear
+
+In `"$HOME/bin/c"`
 
 ```sh
 #!/bin/sh
 
 clear
 ```
+
+### chmod
+
+```sh
+chmod +x bin/*
+```
+
+**Comments on my setup?**
