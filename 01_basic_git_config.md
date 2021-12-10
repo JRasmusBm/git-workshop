@@ -4,9 +4,9 @@
 
 ```sh
 clear;
-ls -a;
 mkdir workshop;
 cd workshop;
+git status;
 git init;
 git status;
 ls -a;
@@ -23,15 +23,14 @@ git config --global --edit # Get comfortable editing this file! VCS!
 git commit --allow-empty -m 'First commit' # Now it works (opens editor)
 ```
 
-## Writing a good commit message
-
-I actually don't recommend using the -m flag on commits for anything that you
-intend to push into a shared branch. It leads you into a false sense that commit
-messages should be short, instead of informational.
-
 ### Choosing an Editor
 
 Installing the editor (Say I preferred `nano`):
+
+```gitconfig
+[core]
+    editor = nano
+```
 
 ```sh
 sudo apt install nano -y
@@ -43,6 +42,13 @@ git config --global --edit # Opens in nano 😱
     editor = nvim
 #   editor = code --wait
 ```
+
+## Writing a good commit message
+
+I actually don't recommend using the -m flag on commits for anything that you
+intend to push into a shared branch. It leads you into a false sense that commit
+messages should be short, instead of informational. The first line has to
+be lower than 56 characters.
 
 ### Setting up a template
 
@@ -66,3 +72,5 @@ nvim ~/.gitmessage
 
 Are there any **concerns** or **side-effects** worth mentioning?
 ```
+
+**Discussion on commit messages?**
