@@ -15,7 +15,7 @@ console.log("hello")
 
 const a = "25"
 
-console.log(`here's some information about ${a}`
+console.log(`here's some information about ${a}`)
 console.log({
         int: Number.parseInt(a),
         charLength: a.length
