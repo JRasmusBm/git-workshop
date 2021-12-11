@@ -4,6 +4,8 @@
 
 ```sh
 docker run --name=git-workshop -it ubuntu /bin/bash;
+exit
+docker start -ai git-workshop
 # docker rm git-workshop;
 set -o vi;
 ```
