@@ -21,6 +21,7 @@ commit.
 
 ```sh
 git checkout HEAD@{1}
+git log --oneline --all --graph
 git checkout -b example
 git log --oneline --all --graph
 ```

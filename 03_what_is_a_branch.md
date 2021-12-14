@@ -198,6 +198,7 @@ git reset --hard HEAD~5
 git log --oneline --all --graph
 git reset --hard main~
 git log --oneline --all --graph
+git reset --hard example
 ```
 
 Feel free to play around with this until you feel confident that the commit tree
@@ -207,6 +208,7 @@ around in the tree.
 ## Removing branches
 
 ```sh
+git log --oneline --all --graph
 git branch -D temp # Cannot delete current branch
 git checkout main
 git log --oneline --all --graph
