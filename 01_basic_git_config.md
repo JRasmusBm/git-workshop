@@ -13,6 +13,7 @@ ls -a;
 rm -rf .git;
 git status;
 git init;
+git checkout -b 'main' # Set initial branch name, more about this later
 ```
 
 ## Making a commit
