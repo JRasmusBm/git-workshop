@@ -27,6 +27,21 @@ git add src
 git commit
 ```
 
+Write a commit message (you can write whatever you would like).
+
+```markdown
+Add a script with information about a number a
+
+**Why** was the change needed?
+
+I conducting a git workshop and want to show how to make a commit. The
+code itself has no significance.
+```
+
+When you close the file in your editor, given that you made any change to the
+commit message, the contents of the file (minus the comments) will be added as
+the commit message.
+
 ## Add a second commit that updates the same file
 
 ```sh
@@ -35,10 +50,27 @@ nvim src/app.ts
 
 Rename `a` to `b`
 
+```sh
+git add src
+git commit
+```
+
+```markdown
+Rename `a` to `b`
+
+**Why** was the change needed?
+
+To show what happens when you create a commit with changes to an
+existing file.
+```
+
 ## What is a commit?
 
 ```sh
-git show master
+git log
+git show main
+git show main~1
+git show main~2
 ```
 
 A commit in git is:
