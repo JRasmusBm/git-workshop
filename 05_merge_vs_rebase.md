@@ -2,13 +2,11 @@
 
 When I was first taught how to use git, I was taught the following commands.
 
-```sh
-git pull
-git push
-git add
-git commit
-git merge
-```
+- `git pull`
+- `git push`
+- `git add`
+- `git commit`
+- `git merge`
 
 Those were also mostly the commands I used for the longest time. Then one day
 I learned about rebase and since then I consider merging anywhere else than into
@@ -30,7 +28,6 @@ git log --oneline --all --graph
 nvim src/app.ts # Add a type
 git add src
 git commit
-git checkout -b example_merge
 ```
 
 ```markdown
@@ -50,6 +47,7 @@ git add src
 git commit
 
 git checkout example
+git checkout -b example_merge
 git log --oneline --all --graph
 ```
 
@@ -75,6 +73,10 @@ Sometimes when resolving a conflict it can be very hard to see how the two
 pieces of code could have originated from the same line. I therefore recommend
 the following setting.
 
+```sh
+git config --global --edit
+```
+
 ```gitconfig
 [merge]
   conflictstyle = diff3
@@ -85,8 +87,12 @@ middle section is the code at the closest common parent in the commit tree.
 
 ```sh
 git merge main
+
+nvim src/app.ts # Resolve the conflict
+
 git add src
 git merge --continue
+git log --oneline --all --graph
 ```
 
 ## Performing a rebase
@@ -99,13 +105,14 @@ new commits as it goes.
 ```sh
 git checkout example
 git checkout -b example_rebase
+git log --oneline --all --graph
 git rebase main
 git rebase --abort # If you're unhappy you can abort at any time
 git status
 git rebase main
 git status
 
-nvim src/app.ts # Works the same way (notice the diff changed order)
+nvim src/app.ts # Resolve the conflict
 ```
 
 ```sh
@@ -129,21 +136,29 @@ git merge --no-ff example_merge
 Let's compare the results.
 
 ```sh
+clear
 git log --oneline --all --graph
+```
 
+It's a bit crowded, let's look at them separately.
+
+```sh
 clear
 git checkout main_with_merge
 git log --oneline --graph
-git log --oneline
-
 git checkout main_with_rebase
 git log --oneline --graph
+
+clear
+git checkout main_with_merge
+git log --oneline
+git checkout main_with_rebase
 git log --oneline
 ```
 
 ## Conclusion
 
-Use rebase to get your branch up to date with another branch. Use merge to push your branch into a shared branch.
+Rebase replays commits on top of the other history, merge tries to join them chronologically. Use rebase to get your branch up to date with another branch. Use merge to push your branch into a shared branch (i.e. main or staging).
 
 ## Some useful related settings
 
@@ -169,7 +184,16 @@ That means that from now on you will have to start using fetch when somebody
 force pushes in your branch, and that you'll have to use rebase to update your
 branch with the changes from another.
 
+```sh
+git checkout example
+git merge main # Disallowed
+```
+
 ### Autostash
+
+```sh
+git config --global --edit
+```
 
 ```gitconfig
 [rebase]
@@ -185,7 +209,22 @@ Remote branches can quickly crowd up your local branch list. The following
 setting will remove the local ref to the remote branch when you run git fetch
 / pull.
 
+```sh
+git config --global --edit
+```
+
 ```gitconfig
 [fetch]
   prune = true
+```
+
+## Clean-up
+
+```sh
+git log --oneline --all --graph
+git branch -D main_with_merge
+git branch -D main_with_rebase
+git branch -D example_rebase
+git branch -D example_merge
+git log --oneline --all --graph
 ```
