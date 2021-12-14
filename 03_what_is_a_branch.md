@@ -145,7 +145,19 @@ git log --oneline --all --graph
 **Warning! Make sure you commit any changes that you want to keep before
 moving on!**
 
+It can be helpful to set up a global gitignore file.
+
 ```sh
+git config --global --edit
+```
+
+```gitconfig
+[core]
+  excludesfile = "~/.gitignore_global"
+```
+
+```sh
+git log --oneline --all --graph
 git reset --hard <target-commit>
 ```
 
