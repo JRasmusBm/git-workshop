@@ -23,7 +23,6 @@ We can see that it points to a different file, refs/heads/main. We continue
 our investigation:
 
 ```sh
-:wq
 nvim .git/refs/heads/main
 ```
 
@@ -35,9 +34,9 @@ HEAD does actually not have to point to a branch, it can also point to a commit
 directly.
 
 ```sh
-git show HEAD
-git show HEAD --format='format:%H'
-git checkout "$(git show HEAD --format='format:%H')"
+git log HEAD
+git log HEAD --format='format:%H'
+git checkout "$(git show HEAD --format='format:%H' | head -1)"
 git log
 ```
 
@@ -46,7 +45,6 @@ directly to the commit hash.
 
 ```sh
 nvim .git/HEAD
-:wq
 ```
 
 While cool, the disadvantage with doing this is that when you
@@ -63,6 +61,7 @@ Just remember that the branches are only temporary labels for commits.**
 git checkout -b example
 git log # Notice that HEAD is pointing to a new branch
 ls .git/refs/heads/
+nvim .git/HEAD
 ```
 
 As you can tell there can be multiple branches pointing to the same commit. HEAD
@@ -78,16 +77,6 @@ git checkout example
 git log # notice what happened to HEAD
 ```
 
-## Removing branches
-
-```sh
-git checkout main
-git branch -D example
-git log
-```
-
-As long as you have no other software involved using the branches to know which
-version of your software to operate on, deleting branches is not scary at all.
 
 Let me show you, let's create a bunch of commits:
 
@@ -124,20 +113,63 @@ Let's look at what happens when I checkout a branch.
 ```sh
 git checkout example
 git log --oneline --all --graph
+git checkout -b temp
+git log --oneline --all --graph
 git checkout main
 ```
+
+## Creating an alias
+
+**You probably notice that we're running the log command all the time**
+
+### Inside the git config
+
+```sh
+git config --global --edit
+```
+
+```gitconfig
+[alias]
+# Shell command
+    hello = "!echo 'hello world!'"
+# Git command
+    ll = "log --oneline --all --graph"
+```
+
+### On the path
+
+```sh
+git hello
+git ll
+
+nvim ~/bin/git-l
+```
+
+```sh
+#!/bin/sh
+
+git --no-pager log --oneline --all --graph -"${1:-20}"
+```
+
+```sh
+chmod +x ~/bin/git-l
+git l
+git l 5
+g l 5
+```
+
+## Back to switching branches
 
 We're just moving the HEAD pointer around. Let's look again in the .git/ folder:
 
 ```sh
+git log --oneline --all --graph
+git checkout temp
+git log --oneline --all --graph
 cat .git/HEAD
 cat .git/refs/heads/example
+cat .git/refs/heads/temp
 cat .git/refs/heads/main
-```
-
-```sh
-git checkout main
-git log --oneline --all --graph
 ```
 
 ## Moving branches around
@@ -158,15 +190,29 @@ git config --global --edit
 
 ```sh
 git log --oneline --all --graph
-git reset --hard <target-commit>
+git reset --hard main
+git log --oneline --all --graph
+git reset --hard example
+git log --oneline --all --graph
+git reset --hard HEAD~5
+git log --oneline --all --graph
+git reset --hard main~
+git log --oneline --all --graph
 ```
 
-
 Feel free to play around with this until you feel confident that the commit tree
-does not change at all when you change branches. You are just moving a pointer
+does not change at all when you create, change or update branches. You are just moving a pointer
 around in the tree.
 
-Let's get back to the example of deleting a branch without worrying.
+## Removing branches
+
+```sh
+git branch -D temp # Cannot delete current branch
+git checkout main
+git log --oneline --all --graph
+git branch -D temp
+git log --oneline --all --graph
+```
 
 To check your understanding: Consider what would happen if I were to delete the
 branch example here. What do you think would happen?
@@ -175,3 +221,5 @@ branch example here. What do you think would happen?
 git branch -D example
 git log --oneline --all --graph
 ```
+
+**Where did the commits go?**
