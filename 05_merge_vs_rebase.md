@@ -179,4 +179,13 @@ branch with the changes from another.
 It's useful to turn on autostash, or you just make a throwaway commit with your
 current workspace.
 
-## Be careful with git pull!
+### Fetch prune
+
+Remote branches can quickly crowd up your local branch list. The following
+setting will remove the local ref to the remote branch when you run git fetch
+/ pull.
+
+```gitconfig
+[fetch]
+  prune = true
+```
