@@ -44,7 +44,9 @@ export PATH="$PATH:$HOME/bin"
 
 ### v == vim
 
-In `"$HOME/bin/v"`:
+```sh
+nvim "$HOME/bin/v"
+```
 
 ```sh
 #!/bin/sh
@@ -54,7 +56,9 @@ nvim "$@"
 
 ### g == git
 
-In `"$HOME/bin/g"`
+```sh
+nvim "$HOME/bin/g"
+```
 
 ```sh
 #!/bin/sh
@@ -68,7 +72,9 @@ fi
 
 ### c == clear
 
-In `"$HOME/bin/c"`
+```sh
+nvim "$HOME/bin/c"
+```
 
 ```sh
 #!/bin/sh
