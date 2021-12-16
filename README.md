@@ -10,7 +10,7 @@ appreciated.
 
 The workshop contains the following modules:
 
-0. [Setting up a docker container to work in](00_setup_docker.md)
+0. (If you don't want to run on your own system): [Setting up a docker container to work in](00docker.md)
 1. [Creating a basic git config](01_basic_git_config.md)
 2. [What is a commit? How do I make a good one?](02_what_is_a_commit.md)
 3. [What is a branch? How do I use them effectively?](03_what_is_a_branch.md)
