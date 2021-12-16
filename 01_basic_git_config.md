@@ -75,3 +75,5 @@ Are there any **concerns** or **side-effects** worth mentioning?
 ```
 
 **Discussion on commit messages?**
+
+2. [What is a commit? How do I make a good one?](02_what_is_a_commit.md)

@@ -89,3 +89,5 @@ chmod +x bin/*
 ```
 
 **Comments on my setup?**
+
+1. [Creating a basic git config](01_basic_git_config.md)
