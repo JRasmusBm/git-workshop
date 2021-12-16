@@ -85,4 +85,5 @@ A commit in git is:
 - The current file tree is found by traversing the commit log from the beginning
   of the project until the current commit.
 
-3. [What is a branch? How do I use them effectively?](03_what_is_a_branch.md)
+Next Module: [What is a branch? How do I use them effectively?](03_what_is_a_branch.md)  
+Back to [README.md](README.md)

@@ -90,4 +90,5 @@ chmod +x bin/*
 
 **Comments on my setup?**
 
-1. [Creating a basic git config](01_basic_git_config.md)
+Next Module: [Creating a basic git config](01_basic_git_config.md)  
+Back to [README.md](README.md)

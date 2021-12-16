@@ -52,3 +52,5 @@ git checkout <local-branch>
 - Use-cases for interactive rebase
 - How to effectively use interactive rebase during a code review
 - Is there any use for a PR squash if the team is comfortable with interactive rebases?
+
+Back to [README.md](README.md)

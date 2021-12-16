@@ -229,4 +229,6 @@ git branch -D example_merge
 git log --oneline --all --graph
 ```
 
-6. [Maintaining a clean history](06_interactive_rebase.md)
+Next Module: [Maintaining a clean history](06_interactive_rebase.md)  
+Back to [README.md](README.md)
+

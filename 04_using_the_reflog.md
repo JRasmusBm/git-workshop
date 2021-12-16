@@ -33,4 +33,5 @@ git will skyrocket, since you can always recover whatever mistake you've made.
 always commit everything you care about (even if you don't feel happy with your
 changes) before performing other git operations.
 
-5. [Merge vs. Rebase](05_merge_vs_rebase.md)
+Next Module: [Merge vs. Rebase](05_merge_vs_rebase.md)  
+Back to [README.md](README.md)

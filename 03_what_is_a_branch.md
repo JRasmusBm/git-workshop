@@ -226,4 +226,5 @@ git log --oneline --all --graph
 
 **Where did the commits go?**
 
-4. [How do I recover from mistakes?](04_using_the_reflog.md)
+Next Module: [How do I recover from mistakes?](04_using_the_reflog.md)  
+Back to [README.md](README.md)
