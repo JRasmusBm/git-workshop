@@ -8,6 +8,14 @@ This repository provides the basis for a git workshop that I have run a number
 of times at various companies where I've worked, and which has always been
 appreciated.
 
+Though exclusive use the git command line in the workshop
+recommend getting intimately familiar with the git integration available in your
+editor of choice.
+
+- [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) for vim/neovim
+- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+    and [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) for Visual Studio Code.
+
 The workshop contains the following modules:
 
 0. (If you don't want to run on your own system): [Setting up a docker container to work in](00_setup_docker.md)
