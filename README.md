@@ -25,7 +25,8 @@ The workshop contains the following modules:
 4. [How do I recover from mistakes?](04_using_the_reflog.md)
 5. [Merge vs. Rebase](05_merge_vs_rebase.md)
 6. [Maintaining a clean history](06_interactive_rebase.md)
-7. [Use cherry-pick, rebase and branching to make changes easier to review](07_cherry_pick.md)
+7. [Cherry-pick](07_cherry_pick.md)
+8. [Putting it all together for easier reviews](08_workflow.md)
 
 I will of course share nice configuration settings and tips along the way. If
 the workshop takes longer than the alotted time I'll invite to a follow-up
