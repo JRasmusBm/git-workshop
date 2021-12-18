@@ -18,7 +18,7 @@ git rebase -i HEAD~4
 git checkout -b example_copy
 git checkout example
 
-git rebase -i main # Usually what you will be doing.
+git rebase -i main # Usually what we will be doing.
 ```
 
 All the possible commands are available in the list.
@@ -33,7 +33,7 @@ git log --oneline --all --graph
 After any kind of rebase, including an interactive one, at least one commit will
 have been replayed and thus assigned a new commit hash.
 
-That means that you will have to perform a force push to sync the branches. 
+That means that we will have to perform a force push to sync the branches. 
 
 ```sh
 git push -f

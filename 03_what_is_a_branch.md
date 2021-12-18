@@ -1,15 +1,15 @@
 # What is a branch?
 
 After having talked about commits, talking about branches almost feels
-anticlimactic. A branch is simply an alias for a commit hash that you can move
+anticlimactic. A branch is simply an alias for a commit hash that we can move
 around in the commit tree.
 
 ```sh
 git log
 ```
 
-If you look in the brackets next to the commit in the output you will see some
-variation on the following: `(HEAD -> main)`. You can think of HEAD as the red
+If we look in the brackets next to the commit in the output we will see some
+variation on the following: `(HEAD -> main)`. We can think of HEAD as the red
 symbol on a map that says "This is your current position".
 
 The symbol indicates that HEAD is currently pointing at the branch main. The
@@ -27,7 +27,7 @@ nvim .git/refs/heads/main
 ```
 
 So main is just another name for a hash! This is one of the main takeaways
-that I want to give everybody in this workshop. Except as handy aliases,
+that in this workshop. Except as handy aliases,
 branches have absolutely no meaning in the git object model.
 
 HEAD does actually not have to point to a branch, it can also point to a commit
@@ -40,22 +40,24 @@ git checkout "$(git show HEAD --format='format:%H' | head -1)"
 git log
 ```
 
-Notice that there is no longer an arrow between HEAD and main. HEAD points
+We note that there is no longer an arrow between HEAD and main. HEAD points
 directly to the commit hash.
 
 ```sh
 nvim .git/HEAD
 ```
 
-While cool, the disadvantage with doing this is that when you
+While cool, the disadvantage with doing this is that when we
 make commits in this state, no branches will be updated to point to the new
-commits, so you'll have to remember the commit hashes yourself (or create
+commits, so we'll have to remember the commit hashes ourselves (or create
 a branch before moving on).
 
-**With effective use of branches, you won't have to remember commit hashes much.
+**With effective use of branches, we won't have to remember commit hashes much.
 Just remember that the branches are only temporary labels for commits.**
 
 ## Creating a branch
+
+Creating a branch is done with `git checkout -b <name>`. 
 
 ```sh
 git checkout -b example
@@ -64,11 +66,13 @@ ls .git/refs/heads/
 nvim .git/HEAD
 ```
 
-As you can tell there can be multiple branches pointing to the same commit. HEAD
+As we can see there can be multiple branches pointing to the same commit. HEAD
 shows which one we are currently working on. That branch will follow us around
 when we perform branch operations.
 
 ## Switching between branches
+
+The checkout command lets us move HEAD around.
 
 ```sh
 git checkout main
@@ -77,8 +81,7 @@ git checkout example
 git log # notice what happened to HEAD
 ```
 
-
-Let me show you, let's create a bunch of commits:
+In order to create some more space to move around, let's create a bunch of commits:
 
 ```sh
 git checkout -b example
@@ -100,7 +103,7 @@ git log --oneline --all --graph -10 # Only show the last 10 commits
 git log --oneline --all --graph
 ```
 
-I am going to start referring to this view as the commit tree, or simply the
+We are going to start referring to this view as the commit tree, or simply the
 tree. Let's at it for a bit, to make sure that we understand it.
 
 1. The stars are individual commits
@@ -108,7 +111,7 @@ tree. Let's at it for a bit, to make sure that we understand it.
    directly on the previous one.
 3. Branching points are shown with the | and / characters
 
-Let's look at what happens when I checkout a branch.
+Let's look at what happens when we checkout a branch.
 
 ```sh
 git checkout example
@@ -120,7 +123,10 @@ git checkout main
 
 ## Creating an alias
 
-**You probably notice that we're running the log command all the time**
+**We're running the log command all the time! Let's create an alias**
+
+There are two ways to create an alias in a commit. You can either add it to the
+git config or by adding it as a binary on the path.
 
 ### Inside the git config
 
@@ -160,7 +166,7 @@ g l 5
 
 ## Back to switching branches
 
-We're just moving the HEAD pointer around. Let's look again in the .git/ folder:
+Let's move one final time and look in the .git/ folder:
 
 ```sh
 git log --oneline --all --graph
@@ -174,10 +180,11 @@ cat .git/refs/heads/main
 
 ## Moving branches around
 
-**Warning! Make sure you commit any changes that you want to keep before
-moving on!**
+**Warning! Always make sure to commit any changes that we want to keep before
+moving on! Uncommitted changes can not be recovered!**
 
-It can be helpful to set up a global gitignore file.
+If we have want to have some files in our projects that should not be included
+in the git history, it can be helpful to set up a global gitignore file.
 
 ```sh
 git config --global --edit
@@ -187,6 +194,9 @@ git config --global --edit
 [core]
   excludesfile = "~/.gitignore_global"
 ```
+
+To move a branch to a different commit / ref, we use `git reset --hard
+<ref-or-hash>`.
 
 ```sh
 git log --oneline --all --graph
@@ -201,11 +211,13 @@ git log --oneline --all --graph
 git reset --hard example
 ```
 
-Feel free to play around with this until you feel confident that the commit tree
-does not change at all when you create, change or update branches. You are just moving a pointer
+It's a good idea to play around with this until we feel confident that the commit tree
+does not change at all when we create, change or update branches. We are just moving a pointer
 around in the tree.
 
 ## Removing branches
+
+To remove a branch (with force) in git, we run `git branch -D temp`.
 
 ```sh
 git log --oneline --all --graph
@@ -216,8 +228,8 @@ git branch -D temp
 git log --oneline --all --graph
 ```
 
-To check your understanding: Consider what would happen if I were to delete the
-branch example here. What do you think would happen?
+To check our understanding: Consider what would happen if we were to delete the
+branch example here. What do we think would happen?
 
 ```sh
 git branch -D example

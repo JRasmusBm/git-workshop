@@ -1,6 +1,7 @@
 # Merge vs Rebase
 
-When I was first taught how to use git, I was taught the following commands.
+When first taught how to use git, many of us were taught the following commands
+(assuming an initialized repository).
 
 - `git pull`
 - `git push`
@@ -8,9 +9,9 @@ When I was first taught how to use git, I was taught the following commands.
 - `git commit`
 - `git merge`
 
-Those were also mostly the commands I used for the longest time. Then one day
-I learned about rebase and since then I consider merging anywhere else than into
-a main branch an anti-pattern.
+Those were also mostly the commands I used for the longest time. In this section
+we learn about rebase, and I will argue that merging from a shared branch into
+a feature branch is an anti-pattern. That is what rebase is for.
 
 ## Setting the stage
 
@@ -61,13 +62,13 @@ is the target of the command.
 git merge main
 nvim src/app.ts # Notice that it automatically resolved the top line
 
-git merge --abort # You can abort a merge at any point
+git merge --abort # We can abort a merge at any point
 ```
 
 Conflicts are a good thing! Git mostly is able to apply the changes
-without help, but whenever it feels unsure about what you actually wanted, it
-will ask you to clarify. The alternative would be much worse, where it would
-randomly make a decision for you.
+without help, but whenever it feels unsure about what we actually wanted, it
+will ask us to clarify. The alternative would be much worse, where it would
+randomly make a decision for us.
 
 Sometimes when resolving a conflict it can be very hard to see how the two
 pieces of code could have originated from the same line. I therefore recommend
@@ -82,8 +83,9 @@ git config --global --edit
   conflictstyle = diff3
 ```
 
-You will see that it has now added a new section in the conflict diff. The
-middle section is the code at the closest common parent in the commit tree.
+When we re-run the merge/rebase we see that it has now added a new section in
+the conflict diff. The middle section is the code at the closest common parent
+in the commit tree.
 
 ```sh
 git merge main
@@ -98,8 +100,8 @@ git log --oneline --all --graph
 ## Performing a rebase
 
 Rebase is for once a rather useful name for the git operation. What it does is
-it puts the current branch pointer next to the branch you're rebasing on, and
-then replays the changes from your branch on top of the other branch, creating
+it puts the current branch pointer next to the branch we're rebasing on, and
+then replays the changes from our branch on top of the other branch, creating
 new commits as it goes.
 
 ```sh
@@ -107,7 +109,7 @@ git checkout example
 git checkout -b example_rebase
 git log --oneline --all --graph
 git rebase main
-git rebase --abort # If you're unhappy you can abort at any time
+git rebase --abort # If we're unhappy we can abort at any time
 git status
 git rebase main
 git status
@@ -140,7 +142,8 @@ clear
 git log --oneline --all --graph
 ```
 
-It's a bit crowded, let's look at them separately.
+It's a bit crowded, let's look at them separately. Remember to look at the
+changes from the perspective of the main branch.
 
 ```sh
 clear
@@ -156,9 +159,21 @@ git checkout main_with_rebase
 git log --oneline
 ```
 
+When we compare the two approaches we can notice a difference in the order of
+the commits. In the rebase version, the commits that were included in the final
+merge are added as the last commits before the final merge. In the merge version
+they are included chronologically.
+
+This, along with the fact that the graph gets easier to take in with the rebase
+approach is why rebase is often favored for updating our feature branches to
+the state of a shared branch.
+
 ## Conclusion
 
-Rebase replays commits on top of the other history, merge tries to join them chronologically. Use rebase to get your branch up to date with another branch. Use merge to push your branch into a shared branch (i.e. main or staging).
+Rebase replays commits on top of the other history, merge tries to join them
+chronologically. We use rebase our branch up to date with changes in another
+branch, and use merge to add our changes to a shared branch (i.e. main or
+staging).
 
 ## Some useful related settings
 
@@ -168,7 +183,8 @@ git config --global --edit
 
 ### Enforce the conclusion above
 
-These will take some getting used to, but they will improve your life over time.
+These take some getting used to, but they really improve our life using git
+over time.
 
 ```gitconfig
 [merge]
@@ -178,10 +194,10 @@ These will take some getting used to, but they will improve your life over time.
 ```
 
 This makes it so that the default behavior of merge and pull is to bail if
-fast-forward is not possible (i.e. you haven't rebased).
+fast-forward is not possible (i.e. we haven't rebased).
 
-That means that from now on you will have to start using fetch when somebody
-force pushes in your branch, and that you'll have to use rebase to update your
+That means that from now on we will have to start using fetch when somebody
+force pushes in our branch, and that we'll have to use rebase to update our
 branch with the changes from another.
 
 ```sh
@@ -190,6 +206,10 @@ git merge main # Disallowed
 ```
 
 ### Autostash
+
+Often we have changes that we haven't committed, but we still want to perform
+a rebase without having to manually stash or create extra commits. There is
+a useful setting to tell git to do this on automatically on rebase.
 
 ```sh
 git config --global --edit
@@ -200,13 +220,10 @@ git config --global --edit
   autostash = true
 ```
 
-It's useful to turn on autostash, or you just make a throwaway commit with your
-current workspace.
-
 ### Fetch prune
 
-Remote branches can quickly crowd up your local branch list. The following
-setting will remove the local ref to the remote branch when you run git fetch
+Remote branches can quickly crowd up our local branch list. The following
+setting will remove the local ref to the remote branch when we run git fetch
 / pull.
 
 ```sh

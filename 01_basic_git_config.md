@@ -23,8 +23,8 @@ ls -a;
 ```
 
 Notice that the `git init` command added a new hidden folder `.git` in the root
-of the repository. That folder **is** the repository. If you remove that folder,
-it is the same as completely removing `.git` from the folder. If you don't have
+of the repository. That folder **is** the repository. If we remove that folder,
+it is the same as completely removing `.git` from the folder. If we don't have
 a back-up this cannot be undone!
 
 ```sh
@@ -46,18 +46,18 @@ git checkout -b 'main' # Set initial branch name, more about this later
 git commit --allow-empty -m 'First commit' # Blows up!
 ```
 
-If you are not on a fresh `git config` it is possible that the above command
-went just fine, if so, still follow the configuration steps to see if you would
+If we are not on a fresh `git config` it is possible that the above command
+went just fine, if so, it's still recommended to follow the configuration steps to see if we would
 like to make any of the changes suggested.
 
 We now open up the global git configuration file. In my experience it is
-paramount to get comfortable editing your git configuration, since doing so will
-allow us to tailor your git experience to our own workflows, which will make
-us much more effective. It's also strongly recommended to add your configuration
-files themselves to git, so that you can quickly get back up to speed when
+paramount to get comfortable editing the git configuration, since doing so will
+allow us to tailor our git experience to our own workflows, which will make
+us much more effective. It's also strongly recommended to add our configuration
+files themselves to git, so that we can quickly get back up to speed when
 switching systems.
 
-The following command will open your global git settings. On Ubuntu these are
+The following command will open our global git settings. On Ubuntu these are
 stored in `"$HOME/.gitconfig"`.
 
 ```sh
@@ -71,16 +71,16 @@ fact that it defaults to using an editor that they're not comfortable working
 with. As our first change we will demonstrate how to change the default git
 editor, which will impact all future changes.
 
-Installing the editor (Say I preferred `nano`):
+Installing the editor (Say we preferred `nano`):
 
 ```sh
 sudo apt install nano -y
 ```
 
 We then edit the git config to set the editor to our favorite editor. For
-demonstration purposes I switch the editor to use `nano`. I also included the
-setting for setting up vscode as our git editor, because it is a very powerful
-and popular editor.
+demonstration purposes we switch the editor to use `nano`. We can also for
+example set up vscode as our git editor, included here because it is a very
+powerful and popular editor.
 
 ```sh
 git config --global --edit
@@ -94,7 +94,7 @@ git config --global --edit
 ```
 
 We will now see that when we run the following command again, it now opens in the
-editor we chose. That's neat! :smile: I am going to put it back to use `nvim`
+editor we chose. That's neat! :smile: We are going to put it back to use `nvim`
 (neovim) though, since that is my preferred editor.
 
 ```sh
@@ -152,7 +152,7 @@ a git commit message is as follows:
 #
 # Include a link to the ticket, if any.
 #
-# Add co-authors if you worked on this code with others:
+# Add co-authors if we worked on this code with others:
 #
 # Co-authored-by: Full Name <email@example.com>
 # Co-authored-by: Full Name <email@example.com>

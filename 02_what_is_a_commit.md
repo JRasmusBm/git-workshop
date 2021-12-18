@@ -3,7 +3,7 @@
 ## Add a commit with a file
 
 Now we're going to try to understand what a commit is. To do that we'll create
-a new one.
+a new one. We'll start by adding a TypeScript file.
 
 ```sh
 mkdir src
@@ -27,7 +27,7 @@ git add src
 git commit
 ```
 
-Write a commit message (you can write whatever you would like).
+We add a commit message describing the change and potentially why it was made.
 
 ```markdown
 Add a script with information about a number a
@@ -38,11 +38,13 @@ I conducting a git workshop and want to show how to make a commit. The
 code itself has no significance.
 ```
 
-When you close the file in your editor, given that you made any change to the
-commit message, the contents of the file (minus the comments) will be added as
+When we close the file in our editor, given that we made any change to the
+commit message, the contents of the file (minus the comments) are added as
 the commit message.
 
 ## Add a second commit that updates the same file
+
+I want to show what a commit looks like that edits an existing file.
 
 ```sh
 nvim src/app.ts
@@ -60,11 +62,15 @@ Rename `a` to `b`
 
 **Why** was the change needed?
 
-To show what happens when you create a commit with changes to an
+To show what happens when we create a commit with changes to an
 existing file.
 ```
 
 ## What is a commit?
+
+We will now look at each of the three commits we have in our repository so far.
+The `~` symbol lets us select a relative commit, which can be really useful when
+we don't want to look up a commit hash.
 
 ```sh
 git log
