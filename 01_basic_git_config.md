@@ -134,6 +134,14 @@ first time).
 git commit --allow-empty -m 'First commit' # Should work now
 ```
 
+Let's also for convenience add a branch that points to the first commit, so we
+can easily refer to it in other modules (more about branches in module 03).
+
+```sh
+git checkout -b root
+git checkout main
+```
+
 ## Writing a good commit message
 
 Except for the first commit, I strongly advice against using the -m flag for commits that we
