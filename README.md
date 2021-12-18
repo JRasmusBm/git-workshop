@@ -14,7 +14,7 @@ editor of choice.
 
 - [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) for vim/neovim
 - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
-    and [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) for Visual Studio Code.
+  and [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) for Visual Studio Code.
 
 The workshop contains the following modules:
 
@@ -25,10 +25,10 @@ The workshop contains the following modules:
 4. [How do I recover from mistakes?](04_using_the_reflog.md)
 5. [Merge vs. Rebase](05_merge_vs_rebase.md)
 6. [Maintaining a clean history](06_interactive_rebase.md)
+7. [Use cherry-pick, rebase and branching to make changes easier to review](07_cherry_pick.md)
 
 I will of course share nice configuration settings and tips along the way. If
 the workshop takes longer than the alotted time I'll invite to a follow-up
 meeting later on.
 
 Welcome to my git workshop! :smile:
-
