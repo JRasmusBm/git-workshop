@@ -1,4 +1,4 @@
-# Git Workshop
+# Intermediate Git Workshop
 
 Git is one of the main tools we as developers use everyday. Many of us were
 never really taught how git works, but rather learned enough commands off by
