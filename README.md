@@ -8,7 +8,7 @@ This repository provides the basis for a git workshop that I have run a number
 of times at various companies where I've worked, and which has always been
 appreciated.
 
-Though exclusive use the git command line in the workshop
+Though we exclusively use the git command line in the workshop I
 recommend getting intimately familiar with the git integration available in your
 editor of choice.
 
