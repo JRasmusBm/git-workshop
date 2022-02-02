@@ -1,5 +1,16 @@
 # What is a commit
 
+## Create a repository to play around in
+
+```sh
+mkdir workshop
+cd workshop
+git init
+git checkout -b root
+git commit -m "First commit" --allow-empty
+git checkout -b main
+```
+
 ## Add a commit with a file
 
 Now we're going to try to understand what a commit is. To do that we'll create

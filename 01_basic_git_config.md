@@ -134,12 +134,11 @@ first time).
 git commit --allow-empty -m 'First commit' # Should work now
 ```
 
-Let's also for convenience add a branch that points to the first commit, so we
-can easily refer to it in other modules (more about branches in module 03).
+## Clean-up
 
 ```sh
-git checkout -b root
-git checkout main
+cd ..
+rm -rf workshop
 ```
 
 ## Writing a good commit message
