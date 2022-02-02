@@ -1,5 +1,18 @@
 # What is a branch?
 
+## Creating a repository to play around in
+
+```sh
+mkdir workshop
+cd workshop
+git init
+git checkout -b root
+git commit -m "First commit" --allow-empty
+git checkout -b main
+```
+
+## Branches are just pointers
+
 After having talked about commits, talking about branches almost feels
 anticlimactic. A branch is simply an alias for a commit hash that we can move
 around in the commit tree.
@@ -30,31 +43,6 @@ So main is just another name for a hash! This is one of the main takeaways
 that in this workshop. Except as handy aliases,
 branches have absolutely no meaning in the git object model.
 
-HEAD does actually not have to point to a branch, it can also point to a commit
-directly.
-
-```sh
-git log HEAD
-git log HEAD --format='format:%H'
-git checkout "$(git show HEAD --format='format:%H' | head -1)"
-git log
-```
-
-We note that there is no longer an arrow between HEAD and main. HEAD points
-directly to the commit hash.
-
-```sh
-nvim .git/HEAD
-```
-
-While cool, the disadvantage with doing this is that when we
-make commits in this state, no branches will be updated to point to the new
-commits, so we'll have to remember the commit hashes ourselves (or create
-a branch before moving on).
-
-**With effective use of branches, we won't have to remember commit hashes much.
-Just remember that the branches are only temporary labels for commits.**
-
 ## Creating a branch
 
 Creating a branch is done with `git checkout -b <name>`. 
@@ -70,27 +58,19 @@ As we can see there can be multiple branches pointing to the same commit. HEAD
 shows which one we are currently working on. That branch will follow us around
 when we perform branch operations.
 
-## Switching between branches
-
-The checkout command lets us move HEAD around.
-
-```sh
-git checkout main
-git log # notice what happened to HEAD
-git checkout example
-git log # notice what happened to HEAD
-```
+## Creating some commits to move around between
 
 In order to create some more space to move around, let's create a bunch of commits:
 
 ```sh
-git checkout -b example
 for i in {1..5} ; do git commit --allow-empty -m "example $i" ; done
 git checkout main
 for i in {1..5} ; do git commit --allow-empty -m "main $i" ; done
 
 git log
 ```
+
+## Visualizing branches
 
 At this point it is getting very difficult to visualize both branches and their
 commits. Let's improve our experience.
@@ -111,17 +91,22 @@ tree. Let's at it for a bit, to make sure that we understand it.
    directly on the previous one.
 3. Branching points are shown with the | and / characters
 
-Let's look at what happens when we checkout a branch.
+## Switching between branches
+
+The checkout command lets us move HEAD around.
 
 ```sh
-git checkout example
-git log --oneline --all --graph
-git checkout -b temp
-git log --oneline --all --graph
 git checkout main
+git log --oneline --all --graph # Notice what happened to HEAD
+git checkout example
+git log --oneline --all --graph # Notice what happened to HEAD
+nvim .git/HEAD
+nvim .git/refs/heads/example
+nvim .git/refs/heads/main
+git log --oneline --all --graph # Notice what happened to HEAD
 ```
 
-## Creating an alias
+## Extra: Creating an alias
 
 **We're running the log command all the time! Let's create an alias**
 
@@ -164,9 +149,33 @@ git l 5
 g l 5
 ```
 
-## Back to switching branches
 
-Let's move one final time and look in the .git/ folder:
+## Detaching HEAD
+
+HEAD does actually not have to point to a branch, it can also point to a commit
+directly.
+
+```sh
+git log --oneline --all --graph # HEAD is attached to example
+git show HEAD --format='format:%H'
+git checkout "$(git show HEAD --format='format:%H')"
+git log --oneline --all --graph # Here HEAD is detached (no arrow)
+```
+
+We note that there is no longer an arrow between HEAD and main. HEAD points
+directly to the commit hash.
+
+```sh
+nvim .git/HEAD
+```
+
+While cool, the disadvantage with doing this is that when we
+make commits in this state, no branches will be updated to point to the new
+commits, so we'll have to remember the commit hashes ourselves (or create
+a branch before moving on).
+
+**With effective use of branches, we won't have to remember commit hashes much.
+Just remember that the branches are only temporary labels for commits.**
 
 ```sh
 git log --oneline --all --graph
@@ -196,15 +205,21 @@ git config --global --edit
 ```
 
 To move a branch to a different commit / ref, we use `git reset --hard
-<ref-or-hash>`.
+<ref-or-hash>`. We can think of `git reset --hard` as a `git checkout` operation
+that brings the attached branch along.
 
 ```sh
+git checkout -b temp
 git log --oneline --all --graph
 git reset --hard main
 git log --oneline --all --graph
 git reset --hard example
 git log --oneline --all --graph
-git reset --hard HEAD~5
+git reset --hard example~2
+git log --oneline --all --graph
+git reset --hard main~2
+git log --oneline --all --graph
+git reset --hard root
 git log --oneline --all --graph
 git reset --hard main~
 git log --oneline --all --graph
@@ -237,6 +252,13 @@ git log --oneline --all --graph
 ```
 
 **Where did the commits go?**
+
+## Clean-up
+
+```sh
+cd ..
+rm -rf workshop
+```
 
 Next Module: [How do I recover from mistakes?](04_using_the_reflog.md)  
 Back to [README.md](README.md)
