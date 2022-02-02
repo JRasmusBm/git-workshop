@@ -81,7 +81,7 @@ git add src
 git commit -m "Build a basic chat messaging app"
 ```
 
-## Our initial solution
+## Our solution
 
 We decide immediately that we need to create a new test file, the big test file
 since the old test file is getting difficult to work with.
@@ -196,20 +196,5 @@ extract-message-handler-tests. We then get to see a nicer diff for our feature:
 ```sh
 git diff extract-message-handler-tests
 ```
-
-## Code review time!
-
-### Comment 1: 
-
-> Nice that you took the time to look at the uploads! One question though, how
-> are the apps supposed to be able to tell the difference between images and
-> a message with a url in it?
-
-### Comment 2:
-
-> I'm not sure about the API of adding all kinds of messages directly on app.
-> Couldn't we use something like `app.sendMessage` instead? 
-
-Oh shoot! We didn't think about how this would actually look in the chat flow! 🙈 
 
 Back to [README.md](README.md)
