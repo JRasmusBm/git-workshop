@@ -1,5 +1,23 @@
 # Using the reflog
 
+## Setting the stage
+
+```sh
+mkdir workshop
+cd workshop
+git init
+git checkout -b root
+git commit -m "First commit" --allow-empty
+git checkout -b example
+for i in {1..5} ; do git commit --allow-empty -m "example $i" ; done
+git checkout root
+git checkout -b main
+for i in {1..5} ; do git commit --allow-empty -m "main $i" ; done
+git log --oneline --all --graph
+git branch -D example
+git log --oneline --all --graph
+```
+
 We know that the commit tree is immutable, meaning that once a commit is created
 it can not be changed or removed.
 
@@ -20,13 +38,13 @@ Notice that the reflog reads from bottom to top, but is indexed from the latest
 commit.
 
 ```sh
-git checkout HEAD@{1} # Go back to the commit we were at one change ago
+git checkout HEAD@{7} # Go back to the commit we were at 7 changes ago
 git log --oneline --all --graph
 git checkout -b example
 git log --oneline --all --graph
 ```
 
-Once we've learned to recover anything from the reflog ourr confidence using
+Once we've learned to recover anything from the reflog our confidence using
 git will skyrocket, since we can always recover whatever mistake we've made.
 
 **Warning** only committed changes will appear in the reflog. Make sure to
