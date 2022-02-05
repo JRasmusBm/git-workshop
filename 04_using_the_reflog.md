@@ -51,5 +51,13 @@ git will skyrocket, since we can always recover whatever mistake we've made.
 always commit everything we care about (even if we don't feel happy with our
 changes) before performing other git operations.
 
+## Clean-up
+
+```sh
+cd ..
+rm -rf workshop
+```
+
+
 Next Module: [Merge vs. Rebase](05_merge_vs_rebase.md)  
 Back to [README.md](README.md)

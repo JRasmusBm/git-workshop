@@ -19,14 +19,64 @@ Let us try it out. For it to be a bit more realistic i will create some real
 branches and create a conflict.
 
 ```sh
-git checkout main
-git reset --hard HEAD~5
-git checkout example
-git reset --hard HEAD~6
-clear
-git log --oneline --all --graph
+mkdir workshop
+cd workshop
+git init
+git checkout -b root
+git commit -m "First commit" --allow-empty
+git checkout -b main
+mkdir src
+nvim src/app.ts
+```
 
-nvim src/app.ts # Add a type
+We'll add a small TypeScript file.
+
+```typescript
+console.log("hello")
+
+const a = "25"
+
+console.log(`here's some information about ${a}`)
+console.log({
+        int: Number.parseInt(a),
+        charLength: a.length
+})
+```
+
+```sh
+git add src
+git commit
+```
+
+```gitcommit
+Add a script with information about a number a
+
+**Why** was the change needed?
+
+I conducting a git workshop and want to show how to make a commit. The
+code itself has no significance.
+```
+
+```sh
+git checkout -b example
+nvim src/app.ts # Rename a to b
+git add src
+git commit
+```
+
+```gitcommit
+Rename `a` to `b`
+
+**Why** was the change needed?
+
+To show what happens when we create a commit with changes to an
+existing file.
+```
+
+```sh
+git checkout main
+git log --oneline --all --graph
+nvim src/app.ts # Add type information to a
 git add src
 git commit
 ```
@@ -41,12 +91,21 @@ I want to create a conflict with the main branch in order to demonstrate rebasin
 
 ```sh
 git log --oneline --all --graph
-git checkout main
 
 nvim src/app.ts # Change greeting
 git add src
 git commit
+```
 
+```gitcommit
+Update greeting to be more polite
+
+**Why** was the change needed?
+
+I want to demonstrate a change that git resolves automatically.
+```
+
+```sh
 git checkout example
 git checkout -b example_merge
 git log --oneline --all --graph
