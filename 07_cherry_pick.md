@@ -90,6 +90,12 @@ That's it, notice that only the selected commits were replayed on top of
 original commits are still available in their original form as long as we can
 find a reference to them.
 
+## Clean up
+
+```sh
+cd ..
+rm -rf workshop
+```
 
 Next Module: [Putting it all together for easier reviews](08_workflow.md)  
 Back to [README.md](README.md)
