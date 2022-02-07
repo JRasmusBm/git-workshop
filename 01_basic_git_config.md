@@ -108,6 +108,18 @@ git config --global --edit # Opens in nano 😱
 #   editor = code --wait
 ```
 
+Another option for setting the editor is to rely on the shell-wide config. This
+is recommended for most cases, since it allows us to use the same editor
+everywhere in the shell, increasing confidence.
+
+```sh
+export EDITOR='nvim'
+# export EDITOR='code --wait'
+```
+
+When using "$EDITOR", remember to remove the editor from the git config, since
+that takes precedence, otherwise.
+
 ### Adding user information to the git config
 
 Whenever we make a commit, our user information is added to the commit
