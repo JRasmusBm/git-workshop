@@ -14,7 +14,8 @@ git switch root
 git switch -c main
 for i in {1..5} ; do git commit --allow-empty -m "main $i" ; done
 git log --oneline --all --graph
-git branch -D example
+
+git branch -D example # Remove the example branch
 git log --oneline --all --graph
 ```
 
@@ -27,6 +28,7 @@ But how do we find our way back to a commit
 if we removed all the refs pointing to it?
 
 ```sh
+clear
 git reflog
 ```
 
