@@ -297,12 +297,8 @@ git config --global --edit
 ## Clean-up
 
 ```sh
-git log --oneline --all --graph
-git branch -D main_with_merge
-git branch -D main_with_rebase
-git branch -D example_rebase
-git branch -D example_merge
-git log --oneline --all --graph
+cd ..
+rm -rf workshop
 ```
 
 Next Module: [Maintaining a clean history](06_interactive_rebase.md)  
