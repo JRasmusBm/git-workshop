@@ -21,7 +21,6 @@ docker run --name=git-workshop -it ubuntu /bin/bash;
 exit
 docker start -ai git-workshop
 # docker rm git-workshop;
-set -o vi;
 ```
 
 ## Setting up sudo
@@ -41,14 +40,12 @@ passwd; # set root password
 Here we set up a normal user called `git-user` and give it access to sudo. To
 set up the user, we choose a password, press enter through the rest of
 the options (they are irrelevant for the workshop) and then submit with the
-letter `y`. We then sign in as the user
-and turn on vi bindings.
+letter `y`.
 
 ```sh
 adduser git-user; # create user
 usermod -a -G sudo git-user;
 su - git-user;
-set -o vi;
 ```
 
 ## Installing git and (n)vim
