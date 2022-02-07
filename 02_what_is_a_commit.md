@@ -6,9 +6,9 @@
 mkdir workshop
 cd workshop
 git init
-git checkout -b root
+git switch -c root
 git commit -m "First commit" --allow-empty
-git checkout -b main
+git switch -c main
 ```
 
 ## Add a commit with a file
@@ -17,36 +17,26 @@ Now we're going to try to understand what a commit is. To do that we'll create
 a new one. We'll start by adding a TypeScript file.
 
 ```sh
-mkdir src
-nvim src/app.ts
+nvim README.md
 ```
 
-```typescript
-console.log("hello")
-
-const a = "25"
-
-console.log(`here's some information about ${a}`)
-console.log({
-        int: Number.parseInt(a),
-        charLength: a.length
-})
+```markdown
+# Hi!
 ```
 
 ```sh
-git add src
+git add README.md
 git commit
 ```
 
 We add a commit message describing the change and potentially why it was made.
 
 ```markdown
-Add a script with information about a number a
+Add README.md
 
 **Why** was the change needed?
 
-I conducting a git workshop and want to show how to make a commit. The
-code itself has no significance.
+To be able to demonstrate what a commit is.
 ```
 
 When we close the file in our editor, given that we made any change to the
@@ -58,18 +48,22 @@ the commit message.
 I want to show what a commit looks like that edits an existing file.
 
 ```sh
-nvim src/app.ts
+nvim README.md # Add a welcome notice
 ```
 
-Rename `a` to `b`
+```markdown
+# Hi!
+
+Welcome to my repository!
+```
 
 ```sh
-git add src
+git add README.md
 git commit
 ```
 
 ```markdown
-Rename `a` to `b`
+Add a welcome notice to the README
 
 **Why** was the change needed?
 
@@ -84,9 +78,13 @@ The `~` symbol lets us select a relative commit, which can be really useful when
 we don't want to look up a commit hash.
 
 ```sh
+clear
 git log
+clear
 git show main
+clear
 git show main~1
+clear
 git show main~2
 ```
 

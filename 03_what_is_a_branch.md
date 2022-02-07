@@ -6,9 +6,9 @@
 mkdir workshop
 cd workshop
 git init
-git checkout -b root
+git switch -c root
 git commit -m "First commit" --allow-empty
-git checkout -b main
+git switch -c main
 ```
 
 ## Branches are just pointers
@@ -18,6 +18,7 @@ anticlimactic. A branch is simply an alias for a commit hash that we can move
 around in the commit tree.
 
 ```sh
+clear
 git log
 ```
 
@@ -29,6 +30,7 @@ The symbol indicates that HEAD is currently pointing at the branch main. The
 information about what HEAD is currently pointing to can be found in `.git/HEAD`
 
 ```sh
+ls .git
 nvim .git/HEAD
 ```
 
@@ -45,10 +47,10 @@ branches have absolutely no meaning in the git object model.
 
 ## Creating a branch
 
-Creating a branch is done with `git checkout -b <name>`. 
+Creating a branch is done with `git switch -c <name>`. 
 
 ```sh
-git checkout -b example
+git switch -c example
 git log # Notice that HEAD is pointing to a new branch
 ls .git/refs/heads/
 nvim .git/HEAD
@@ -64,7 +66,7 @@ In order to create some more space to move around, let's create a bunch of commi
 
 ```sh
 for i in {1..5} ; do git commit --allow-empty -m "example $i" ; done
-git checkout main
+git switch main
 for i in {1..5} ; do git commit --allow-empty -m "main $i" ; done
 
 git log
@@ -93,12 +95,12 @@ tree. Let's at it for a bit, to make sure that we understand it.
 
 ## Switching between branches
 
-The checkout command lets us move HEAD around.
+The switch command lets us move HEAD around.
 
 ```sh
-git checkout main
+git switch main
 git log --oneline --all --graph # Notice what happened to HEAD
-git checkout example
+git switch example
 git log --oneline --all --graph # Notice what happened to HEAD
 nvim .git/HEAD
 nvim .git/refs/heads/example
@@ -158,7 +160,7 @@ directly.
 ```sh
 git log --oneline --all --graph # HEAD is attached to example
 git show HEAD --format='format:%H'
-git checkout "$(git show HEAD --format='format:%H')"
+git switch "$(git show HEAD --format='format:%H')"
 git log --oneline --all --graph # Here HEAD is detached (no arrow)
 ```
 
@@ -179,7 +181,7 @@ Just remember that the branches are only temporary labels for commits.**
 
 ```sh
 git log --oneline --all --graph
-git checkout temp
+git switch temp
 git log --oneline --all --graph
 cat .git/HEAD
 cat .git/refs/heads/example
@@ -205,11 +207,11 @@ git config --global --edit
 ```
 
 To move a branch to a different commit / ref, we use `git reset --hard
-<ref-or-hash>`. We can think of `git reset --hard` as a `git checkout` operation
+<ref-or-hash>`. We can think of `git reset --hard` as a `git switch` operation
 that brings the attached branch along.
 
 ```sh
-git checkout -b temp
+git switch -c temp
 git log --oneline --all --graph
 git reset --hard main
 git log --oneline --all --graph
@@ -237,7 +239,7 @@ To remove a branch (with force) in git, we run `git branch -D temp`.
 ```sh
 git log --oneline --all --graph
 git branch -D temp # Cannot delete current branch
-git checkout main
+git switch main
 git log --oneline --all --graph
 git branch -D temp
 git log --oneline --all --graph

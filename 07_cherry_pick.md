@@ -6,12 +6,12 @@
 mkdir workshop
 cd workshop
 git init
-git checkout -b root
+git switch -c root
 git commit -m "First commit" --allow-empty
-git checkout -b example
+git switch -c example
 for i in {1..5} ; do echo "example $i" > "$i" ; git add "$i" ; git commit -m "example $i" ; done
-git checkout root
-git checkout -b main
+git switch root
+git switch -c main
 for i in {1..5} ; do echo  "main $i" > "$i" ; git add "$i" ; git commit -m "main $i" ; done
 ```
 
@@ -29,16 +29,16 @@ Let's check that we understand the structure:
 ```sh
 git log --oneline --all --graph
 
-git checkout main
+git switch main
 ls
 cat 4
-git checkout example
+git switch example
 ls
 cat 4
-git checkout example~2
+git switch -d example~2
 ls
 cat 3
-git checkout main
+git switch main
 ```
 
 ## Performing a cherry-pick
@@ -47,8 +47,8 @@ We'll add an extra branch to represent where the main branch was before the
 cherry-pick.
 
 ```sh
-git checkout -b main_copy
-git checkout main
+git switch -c main_copy
+git switch main
 
 git log --oneline --all --graph
 ```

@@ -6,12 +6,12 @@
 mkdir workshop
 cd workshop
 git init
-git checkout -b root
+git switch -c root
 git commit -m "First commit" --allow-empty
-git checkout -b example
+git switch -c example
 for i in {1..5} ; do git commit --allow-empty -m "example $i" ; done
-git checkout root
-git checkout -b main
+git switch root
+git switch -c main
 for i in {1..5} ; do git commit --allow-empty -m "main $i" ; done
 git log --oneline --all --graph
 git branch -D example
@@ -38,9 +38,9 @@ Notice that the reflog reads from bottom to top, but is indexed from the latest
 commit.
 
 ```sh
-git checkout HEAD@{7} # Go back to the commit we were at 7 changes ago
+git switch -d HEAD@{7} # Go back to the commit we were at 7 changes ago
 git log --oneline --all --graph
-git checkout -b example
+git switch -c example
 git log --oneline --all --graph
 ```
 

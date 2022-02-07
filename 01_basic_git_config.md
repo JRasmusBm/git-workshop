@@ -42,7 +42,7 @@ a reference to a state before we started making adding any changes, which is
 very useful when running any kind of branch operations later on.
 
 ```sh
-git checkout -b 'main' # Set initial branch name, more about this later
+git switch -c 'main' # Set initial branch name, more about this later
 git commit --allow-empty -m 'First commit' # Blows up!
 ```
 
@@ -134,13 +134,6 @@ first time).
 git commit --allow-empty -m 'First commit' # Should work now
 ```
 
-## Clean-up
-
-```sh
-cd ..
-rm -rf workshop
-```
-
 ## Writing a good commit message
 
 Except for the first commit, I strongly advice against using the -m flag for commits that we
@@ -149,7 +142,7 @@ messages should be short, instead of informational. The recommended format for
 a git commit message is as follows:
 
 ```gitcommit
-# 50-character subject line 
+# 50-character subject line
 #
 # 72-character wrapped longer description. This should answer:
 #
@@ -174,6 +167,10 @@ When getting in the habit of writing better commit messages it's very helpful to
 set up a commit message template. When used properly this can be just the prompt
 we need to get started writing great commit messages.
 
+```sh
+git config --global --edit
+```
+
 ```gitconfig
 [commit]
   template = ~/.gitmessage
@@ -191,6 +188,13 @@ message.
 Useful read: [Thoughtbot Blog: Write good commit messages by blaming others](https://thoughtbot.com/blog/write-good-commit-messages-by-blaming-others)
 
 **Discussion on commit messages?**
+
+## Clean-up
+
+```sh
+cd ..
+rm -rf workshop
+```
 
 Next Module: [What is a commit? How do I make a good one?](02_what_is_a_commit.md)  
 Back to [README.md](README.md)

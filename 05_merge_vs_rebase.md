@@ -22,9 +22,9 @@ branches and create a conflict.
 mkdir workshop
 cd workshop
 git init
-git checkout -b root
+git switch -c root
 git commit -m "First commit" --allow-empty
-git checkout -b main
+git switch -c main
 mkdir src
 nvim src/app.ts
 ```
@@ -58,7 +58,7 @@ code itself has no significance.
 ```
 
 ```sh
-git checkout -b example
+git switch -c example
 nvim src/app.ts # Rename a to b
 git add src
 git commit
@@ -74,7 +74,7 @@ existing file.
 ```
 
 ```sh
-git checkout main
+git switch main
 git log --oneline --all --graph
 nvim src/app.ts # Add type information to a
 git add src
@@ -106,8 +106,8 @@ I want to demonstrate a change that git resolves automatically.
 ```
 
 ```sh
-git checkout example
-git checkout -b example_merge
+git switch example
+git switch -c example_merge
 git log --oneline --all --graph
 ```
 
@@ -164,8 +164,8 @@ then replays the changes from our branch on top of the other branch, creating
 new commits as it goes.
 
 ```sh
-git checkout example
-git checkout -b example_rebase
+git switch example
+git switch -c example_rebase
 git log --oneline --all --graph
 git rebase main
 git rebase --abort # If we're unhappy we can abort at any time
@@ -186,11 +186,11 @@ git log --oneline --all --graph
 ## Result of both patterns
 
 ```sh
-git checkout main
-git checkout -b main_with_rebase
+git switch main
+git switch -c main_with_rebase
 git merge --no-ff example_rebase
-git checkout main
-git checkout -b main_with_merge
+git switch main
+git switch -c main_with_merge
 git merge --no-ff example_merge
 ```
 
@@ -206,15 +206,15 @@ changes from the perspective of the main branch.
 
 ```sh
 clear
-git checkout main_with_merge
+git switch main_with_merge
 git log --oneline --graph
-git checkout main_with_rebase
+git switch main_with_rebase
 git log --oneline --graph
 
 clear
-git checkout main_with_merge
+git switch main_with_merge
 git log --oneline
-git checkout main_with_rebase
+git switch main_with_rebase
 git log --oneline
 ```
 
@@ -260,7 +260,7 @@ force pushes in our branch, and that we'll have to use rebase to update our
 branch with the changes from another.
 
 ```sh
-git checkout example
+git switch example
 git merge main # Disallowed
 ```
 

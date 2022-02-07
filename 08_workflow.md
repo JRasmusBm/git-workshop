@@ -6,9 +6,9 @@
 mkdir workshop
 cd workshop
 git init
-git checkout -b root
+git switch -c root
 git commit --allow-empty -m "First commit"
-git checkout -b main
+git switch -c main
 ```
 
 ## Creating some files to work with
@@ -98,7 +98,7 @@ We take the related tests and move them to a second file called
 `message-handler.test.ts`.
 
 ```sh
-git checkout -b add-support-for-uploads
+git switch -c add-support-for-uploads
 nvim src/app.test.ts  # Copy the file and remove the test
 nvim src/message-handler.test.ts  # Paste and remove unrelated tests
 ```
@@ -172,7 +172,7 @@ tests from the original test file.
 
 
 ```sh
-git checkout -b extract-message-handler-tests
+git switch -c extract-message-handler-tests
 git reset --hard main
 git log --oneline --graph --all
 ```
@@ -198,7 +198,7 @@ file.
 
 ```sh
 git log --oneline --graph --all
-git checkout add-support-for-uploads
+git switch add-support-for-uploads
 git log --oneline --graph --all
 git rebase extract-message-handler-tests
 nvim src/message-handler.test.ts # Resolve the conflict

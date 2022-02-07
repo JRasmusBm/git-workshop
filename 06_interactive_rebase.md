@@ -8,9 +8,9 @@ Let's set up a new repository with some hastily made commits.
 mkdir workshop
 cd workshop
 git init
-git checkout -b root
+git switch -c root
 git commit -m "First commit" --allow-empty
-git checkout -b main
+git switch -c main
 ```
 
 We'll create an example branch, since it's generally not recommended to perform
@@ -20,7 +20,7 @@ interactive rebases in branches that are either:
 2. Checked out by other people (unless you communicate it well)
 
 ```sh
-git checkout -b example
+git switch -c example
 mkdir src
 nvim src/app.ts
 ```
@@ -42,8 +42,8 @@ git add src
 git commit -m "Fix formatting"
 
 git log --oneline --all --graph
-git checkout -b old_example
-git checkout -b example
+git switch -c old_example
+git switch -c example
 ```
 
 It's hard to make a minimal example that's also useful, but bear with me. We
@@ -95,9 +95,9 @@ order to update it.
 Is equivalent to (if it would have been possible with a remote)
 
 ```sh
-git checkout old_example
+git switch old_example
 git reset --hard example
-git checkout example
+git switch example
 
 git log --oneline --all --graph
 ```
@@ -149,9 +149,9 @@ git log --oneline --all --graph
 git show HEAD~
 
 # Pretending to force push
-git checkout old_example
+git switch old_example
 git reset --hard example
-git checkout example
+git switch example
 ```
 
 ## Reordering commits
