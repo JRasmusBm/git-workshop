@@ -81,11 +81,11 @@ we don't want to look up a commit hash.
 clear
 git log
 clear
-git show main
+git show main~2
 clear
 git show main~1
 clear
-git show main~2
+git show main
 ```
 
 A commit in git is:
