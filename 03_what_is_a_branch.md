@@ -30,6 +30,7 @@ The symbol indicates that HEAD is currently pointing at the branch main. The
 information about what HEAD is currently pointing to can be found in `.git/HEAD`
 
 ```sh
+ls -a
 ls .git
 nvim .git/HEAD
 ```
@@ -98,6 +99,8 @@ tree. Let's at it for a bit, to make sure that we understand it.
 The switch command lets us move HEAD around.
 
 ```sh
+git switch example
+git log --oneline --all --graph # Notice what happened to HEAD
 git switch main
 git log --oneline --all --graph # Notice what happened to HEAD
 git switch example
@@ -160,7 +163,7 @@ directly.
 ```sh
 git log --oneline --all --graph # HEAD is attached to example
 git show HEAD --format='format:%H'
-git switch "$(git show HEAD --format='format:%H')"
+git switch -d "$(git show HEAD --format='format:%H')"
 git log --oneline --all --graph # Here HEAD is detached (no arrow)
 ```
 
@@ -181,7 +184,7 @@ Just remember that the branches are only temporary labels for commits.**
 
 ```sh
 git log --oneline --all --graph
-git switch temp
+git switch -c temp
 git log --oneline --all --graph
 cat .git/HEAD
 cat .git/refs/heads/example
@@ -211,7 +214,7 @@ To move a branch to a different commit / ref, we use `git reset --hard
 that brings the attached branch along.
 
 ```sh
-git switch -c temp
+git switch temp
 git log --oneline --all --graph
 git reset --hard main
 git log --oneline --all --graph
@@ -226,6 +229,7 @@ git log --oneline --all --graph
 git reset --hard main~
 git log --oneline --all --graph
 git reset --hard example
+git log --oneline --all --graph
 ```
 
 It's a good idea to play around with this until we feel confident that the commit tree
