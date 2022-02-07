@@ -1,32 +1,47 @@
 # Cherry-pick
 
+## Setting the stage
+
+```sh
+mkdir workshop
+cd workshop
+git init
+git checkout -b root
+git commit -m "First commit" --allow-empty
+git checkout -b example
+for i in {1..5} ; do echo "example $i" > "$i" ; git add "$i" ; git commit -m "example $i" ; done
+git checkout root
+git checkout -b main
+for i in {1..5} ; do echo  "main $i" > "$i" ; git add "$i" ; git commit -m "main $i" ; done
+```
+
+## Understanding the repository
+
 Another very useful git operation in the same vein as rebase is `git
 cherry-pick`. It lets us take one or more commits and replay them on top of the
 current branch.
  
-Let's create some dummy commits. We'll create two branches, `main` and
-`example`, each with 5 commits, and each adding their branch name to the file
-along with an incremented counter.
-
-```sh
-git checkout main
-git checkout -b example
-for i in {1..5} ; do echo "example $i" > "$i" ; git add "$i" ; git commit -m "example $i" ; done
-git checkout main
-for i in {1..5} ; do echo  "main $i" > "$i" ; git add "$i" ; git commit -m "main $i" ; done
-```
+In the setup we created two branches, `main` and `example`, each with 5 commits
+adding a new file with the corresponding number.
 
 Let's check that we understand the structure:
 
 ```sh
+git log --oneline --all --graph
+
 git checkout main
 ls
 cat 4
 git checkout example
 ls
 cat 4
+git checkout example~2
+ls
+cat 3
 git checkout main
 ```
+
+## Performing a cherry-pick
 
 We'll add an extra branch to represent where the main branch was before the
 cherry-pick.
@@ -70,7 +85,7 @@ git cherry-pick --continue
 git log --oneline --all --graph
 ```
 
-That was it, notice that only the selected commits were replayed on top of
+That's it, notice that only the selected commits were replayed on top of
 `main_copy`. Also notice that they as always got new commit hashes and that the
 original commits are still available in their original form as long as we can
 find a reference to them.

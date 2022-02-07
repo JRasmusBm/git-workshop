@@ -202,6 +202,13 @@ git rebase --continue
 git log --oneline --all --graph
 ```
 
+## Clean up
+
+```sh
+cd ..
+rm -rf workshop
+```
+
 
 **Discussion**
 
