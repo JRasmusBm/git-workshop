@@ -66,6 +66,8 @@ git config --global --edit
 
 ### Choosing an Editor
 
+#### The git-specific way (Not recommended)
+
 One of the biggest stumbling blocks preventing many people from using git is the
 fact that it defaults to using an editor that they're not comfortable working
 with. As our first change we will demonstrate how to change the default git
@@ -107,6 +109,8 @@ git config --global --edit # Opens in nano 😱
     editor = nvim
 #   editor = code --wait
 ```
+
+#### Using $EDITOR (recommended)
 
 Another option for setting the editor is to rely on the shell-wide config. This
 is recommended for most cases, since it allows us to use the same editor
