@@ -88,7 +88,7 @@ Notice that all the commit hashes changed! This means that if we imagine that
 origin is pointing to `old_example`, we will have to perform aforce push in
 order to update it.
 
-```sh
+```s
 # git push -f
 ```
 

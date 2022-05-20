@@ -28,6 +28,10 @@ Let's check that we understand the structure:
 
 ```sh
 git log --oneline --all --graph
+git switch example
+git rebase main
+git rebase --onto main 022895f example
+
 
 git switch main
 ls

@@ -79,8 +79,10 @@ At this point it is getting very difficult to visualize both branches and their
 commits. Let's improve our experience.
 
 ```sh
+clear
 git log --oneline # Only see the commit headings
 git log --oneline --all # See all refs and HEAD
+clear
 git log --oneline --all --graph # Visualize the commit relationships
 git log --oneline --all --graph -10 # Only show the last 10 commits
 git log --oneline --all --graph
